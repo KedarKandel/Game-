@@ -17,6 +17,19 @@ class Boundry {
   }
 }
 
+const map = [
+    //todo next... brainstorming
+    // rows and columns
+    //check to see if looping through the rows and symbol associated can create boundry at once,
+    //make switch case for the symbol and define positions using index used to loop...
+    //may be push each Boudndy into boundaries
+
+]
+
+// const boundaries =[]
+
+
+
 const boundaries = [
   new Boundry({
     position: {
