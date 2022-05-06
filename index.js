@@ -97,18 +97,29 @@ function SetEmenies() {
 // animation frame
 
 let animationId;
-
 function animate() {
   animationId = requestAnimationFrame(animate);
   c.clearRect(0, 0, canvas.width, canvas.height);
   player.draw();
-  projectiles.forEach((projectile) => {
+  projectiles.forEach((projectile, index) => {
     projectile.update();
+
+    //remove from edges of the screem
+    if (
+      projectile.x + projectile.radius < 0 ||
+      projectile.x - projectile.radius > canvas.width ||
+      projectile.y + projectile.radius < 0 ||
+      projectile.y - projectile.radius > canvas.height
+    ) {
+      setTimeout(() => {
+        projectiles.splice(index, 1);
+      }, 0);
+    }
   });
   enemies.forEach((enemy, index) => {
     const distance = Math.hypot(player.x - enemy.x, player.y - enemy.y);
     if (distance - enemy.radius - player.radius < 1) {
-     cancelAnimationFrame(animationId)
+      cancelAnimationFrame(animationId);
     }
     enemy.update();
     projectiles.forEach((projectile, projectleIndex) => {
